@@ -1,0 +1,44 @@
+Data Cleaning Log:
+1. Removed irrelevant columns.
+2. Handled missing values in required fields.
+3. Ensured consistency in categorical data formatting.
+4. Checked for logical inconsistencies in dates.
+5. Removed duplicate rows based on Object ID.
+6. Ensured date format for Object begin date and Object end date.
+
+
+Step 1: Remove irrelevant columns
+
+Action: Removed unnecessary columns from the dataset to focus on the most relevant information for analysis.
+Columns Retained: The columns retained include 'Object ID', 'Department', 'Object Name', 'Title', 'Culture', 'Artist Nationality', 'Object Begin Date', 'Object End Date', 'Medium', 'Credit Line', and 'Country'.
+Purpose: This step reduces data noise by eliminating irrelevant fields, making the dataset easier to work with and analyze.
+
+Step 2: Handle missing values in required fields
+
+Action: Removed rows where critical information is missing, particularly in the required columns ('Object ID', 'Department', 'Object Name', 'Title', 'Culture', 'Object Begin Date', 'Object End Date', and 'Medium').
+Missing Values: First, we identified the missing values in each column, then dropped rows with missing values in the critical fields mentioned.
+Result: After cleaning, the number of missing values for these key fields was reduced to zero.
+Purpose: Ensuring completeness in essential data fields is crucial for accurate analysis.
+
+Step 3: Ensure consistency in categorical data formatting
+
+Action: Standardized the format of categorical fields such as 'Department', 'Culture', and 'Medium' by converting them to title case (first letter uppercase).
+Purpose: This step helps maintain consistency in data representation, which is critical for performing operations such as grouping, filtering, and aggregating data correctly. Without this standardization, discrepancies like different cases (e.g., "painting" vs. "Painting") could cause errors in analysis.
+
+Step 4: Logical consistency check (Object Begin Date ≤ Object End Date)
+
+Action: Checked for and corrected any logical inconsistencies in the date fields where 'Object Begin Date' is greater than 'Object End Date'.
+Result: Rows with invalid date ranges were identified and removed.
+Purpose: Ensuring logical consistency in date ranges prevents errors in temporal analyses. For example, an object's creation date cannot be later than its end date.
+
+Step 5: Remove duplicate rows based on 'Object ID'
+
+Action: Removed duplicate rows based on the 'Object ID' column to ensure each record is unique.
+Duplicates Before and After: The number of duplicate entries was calculated before and after this step. All duplicate entries were successfully removed.
+Purpose: Duplicate records can distort the results of any analysis, so it is essential to remove them to ensure the integrity of the dataset.
+
+Step 6: Ensure correct date format for 'Object Begin Date' and 'Object End Date'
+
+Action: Converted the 'Object Begin Date' and 'Object End Date' columns to the proper date format using pd.to_datetime. Invalid date formats were coerced into NaT (Not a Time).
+Result: After this conversion, rows with invalid date formats were either handled or removed, depending on the situation.
+Purpose: Ensuring correct date formats allows for accurate time-based analysis and prevents errors in downstream tasks, such as sorting, filtering, or calculating time intervals.
